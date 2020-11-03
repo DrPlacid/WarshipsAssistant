@@ -25,7 +25,8 @@ public class WarshipsRepository {
 
     private static final String KEY = "647ea400ba637c56bea96355ddd0da4a";
     private static final String BASE_URL = "https://api.worldofwarships.ru/wows/encyclopedia/";
-    final String REQUEST_FIELDS = "ship_id, name, nation, type, tier, is_premium, is_special, images";
+    private static final String REQUEST_FIELDS =
+            "ship_id, name, nation, type, tier, is_premium, is_special, has_demo_profile, images";
 
     private Retrofit retrofit;
 
@@ -82,7 +83,9 @@ public class WarshipsRepository {
                 tierWrapper = new TierWrapper(dto.getTier());
                 tierList.add(tierWrapper);
             }
-            tierWrapper.add(dto);
+            if(!dto.isHasDemoProfile()) {
+                tierWrapper.add(dto);
+            }
         }
         callbackWeakReference.get().onBranchDataReadyCallback(tierList);
     }
@@ -104,6 +107,7 @@ public class WarshipsRepository {
             @Override
             public void onFailure(Call<ApiResponseDTO> call, Throwable t) {
                 t.printStackTrace();
+                callback.get().onConnectionErrorCallback();
             }
         });
     }

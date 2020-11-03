@@ -1,9 +1,9 @@
 package com.drplacid.warshipsassistant.view;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -41,6 +41,11 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
 
     DetailedShipAdapter detailedShipAdapter;
 
+    int markerColor;
+    int neutralColor;
+
+    CardView currentNationCardView;
+    CardView currentTypeCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +54,13 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
 
         typeExpandable = findViewById(R.id.typeExpandable);
         shipExpandable = findViewById(R.id.shipExpandable);
-
         nationSelector = findViewById(R.id.nationSelectionRecycler);
         typeSelector = findViewById(R.id.typeSelectionRecycler);
         shipSelector = findViewById(R.id.commonBranchRecycler);
         shipInfo = findViewById(R.id.recyclerMainInfo);
+
+        markerColor = this.getResources().getColor(R.color.coloMarker);
+        neutralColor = this.getResources().getColor(R.color.colorElementBackground);
 
         onInitRecyclers();
     }
@@ -113,8 +120,11 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
     public void displayDetailedData(List<ShipDTO> list) {
         this.runOnUiThread(() -> {
             detailedShipAdapter.submitList(list);
-            int position = list.size() > 2 ? 0 : list.size();
-            shipInfo.smoothScrollToPosition(position);
+            int position = list.size() - 1;
+            if (position > 0) {
+                shipInfo.smoothScrollToPosition(position);
+            }
+            unmarkItems(currentNationCardView, currentTypeCardView);
         });
     }
 
@@ -130,20 +140,25 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
 
     @Override
     public void showNoConnection() {
-        this.runOnUiThread(() ->
-                Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT)
-                        .show()
-        );
+        this.runOnUiThread(() -> {
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT)
+                    .show();
+            unmarkItems(currentNationCardView);
+        });
     }
 
     @Override
-    public void setNation(Nation nation) {
+    public void setNation(Nation nation, CardView cardView) {
         presenter.setNation(nation);
+        markItem(currentNationCardView, cardView);
+        this.currentNationCardView = cardView;
     }
 
     @Override
-    public void setType(Type type) {
+    public void setType(Type type, CardView cardView) {
         presenter.setType(type);
+        markItem(currentTypeCardView, cardView);
+        this.currentTypeCardView = cardView;
     }
 
     @Override
@@ -154,6 +169,21 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
     @Override
     public void removeShip(ShipDTO dto) {
         presenter.removeShip(dto);
+    }
+
+    private void markItem(CardView oldItem, CardView newItem) {
+        if (oldItem != null) {
+            oldItem.setCardBackgroundColor(neutralColor);
+        }
+        newItem.setCardBackgroundColor(markerColor);
+    }
+
+    private void unmarkItems(CardView... cardViews) {
+        for (CardView c : cardViews) {
+            if (c != null) {
+                c.setCardBackgroundColor(neutralColor);
+            }
+        }
     }
 
 }

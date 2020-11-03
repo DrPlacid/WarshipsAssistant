@@ -30,11 +30,11 @@ public class DetailedShipViewHolder extends RecyclerView.ViewHolder {
     private Context context;
     private boolean initialized = false;
 
-    ImageView shipImage;
-    ImageButton remove;
-    TextView shipName;
-    TextView shipAdditionalInfo;
-    RecyclerView parameters;
+    private ImageView shipImage;
+    private ImageButton remove;
+    private TextView shipName;
+    private TextView shipAdditionalInfo;
+    private RecyclerView parameters;
 
     private List<String> names = new ArrayList<>();
     private List<Integer> values = new ArrayList<>();

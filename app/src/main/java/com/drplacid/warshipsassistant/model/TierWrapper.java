@@ -15,7 +15,6 @@ public class TierWrapper {
     private List<ShipDTO> shipsOfTier = new ArrayList<>();
     private Set<String> nameSet = new HashSet<>();
 
-    private int size;
     public final int TIER;
 
     public TierWrapper(int tier) {
@@ -41,7 +40,6 @@ public class TierWrapper {
     private void addAndSort(ShipDTO dto) {
         shipsOfTier.add(dto);
         nameSet.add(dto.getName());
-        size++;
 
         Collections.sort(shipsOfTier, (dto1, dto2) -> {
             if((dto1.isPremium() || dto1.isSpecial()) && (!dto2.isPremium() || !dto2.isSpecial())) return 1;

@@ -13,7 +13,7 @@ import com.drplacid.warshipsassistant.view.recycler.adapter.SimpleShipAdapter;
 
 public class TierViewHolder extends RecyclerView.ViewHolder {
 
-    RecyclerView shipsInTierRecycler;
+    private RecyclerView shipsInTierRecycler;
 
     public TierViewHolder(@NonNull View itemView) {
         super(itemView);

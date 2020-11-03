@@ -33,6 +33,9 @@ public class ShipDTO implements Comparable<ShipDTO> {
     @SerializedName("is_special")
     boolean isSpecial;
 
+    @SerializedName("has_demo_profile")
+    boolean hasDemoProfile;
+
     @SerializedName("default_profile")
     DefaultProfile defaultProfile;
 
@@ -73,6 +76,10 @@ public class ShipDTO implements Comparable<ShipDTO> {
 
     public Media getImages() {
         return images;
+    }
+
+    public boolean isHasDemoProfile() {
+        return hasDemoProfile;
     }
 
     @Override
