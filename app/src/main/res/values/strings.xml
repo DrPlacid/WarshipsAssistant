@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Warships Assistant</string>
+    
+
+    <string-array name="parameters">
+        <item>Survivability</item>
+        <item>Artillery</item>
+        <item>Torpedoes</item>
+        <item>Aircraft</item>
+        <item>Anti aircraft</item>
+        <item>Mobility</item>
+        <item>Concealment</item>
+    </string-array>
+</resources>

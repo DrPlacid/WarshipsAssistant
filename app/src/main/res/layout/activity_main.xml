@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="@drawable/backgr_main"
+    tools:context=".view.MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMainInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:overScrollMode="never"
+        android:background="@color/colorTransparentBackground"
+        tools:listitem="@layout/layout_ship_info"/>
+
+    <include layout="@layout/layout_selection"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorTransparentBackground"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>
