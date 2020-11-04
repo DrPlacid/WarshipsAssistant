@@ -60,7 +60,7 @@ public class MainActivity extends MvpAppCompatActivity implements IViewMain, Int
         shipInfo = findViewById(R.id.recyclerMainInfo);
 
         markerColor = this.getResources().getColor(R.color.coloMarker);
-        neutralColor = this.getResources().getColor(R.color.colorElementBackground);
+        neutralColor = this.getResources().getColor(R.color.colorTransparentBackground);
 
         onInitRecyclers();
     }
