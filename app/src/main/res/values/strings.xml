@@ -4,6 +4,7 @@
 
     <string-array name="parameters">
         <item>Survivability</item>
+        <item>Armour</item>
         <item>Artillery</item>
         <item>Torpedoes</item>
         <item>Aircraft</item>

@@ -73,6 +73,7 @@ public class DetailedShipViewHolder extends RecyclerView.ViewHolder {
 
     private void initValues() {
         values.add(this.dto.getDefaultProfile().getHull().getHealth());
+        values.add(this.dto.getDefaultProfile().getArmour().getTotal());
         values.add(this.dto.getDefaultProfile().getWeaponry().getArtillery());
         values.add(this.dto.getDefaultProfile().getWeaponry().getTorpedoes());
         values.add(this.dto.getDefaultProfile().getWeaponry().getAircraft());
