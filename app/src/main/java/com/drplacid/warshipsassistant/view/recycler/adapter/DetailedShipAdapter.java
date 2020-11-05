@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
@@ -36,6 +37,12 @@ public class DetailedShipAdapter extends ListAdapter<ShipDTO, DetailedShipViewHo
     public DetailedShipViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_ship_info, parent, false);
+        int margin = 7;
+        int width = parent.getMeasuredWidth() / 2 - 2*margin;
+        CardView.LayoutParams p = new CardView.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        p.setMarginStart(margin);
+        p.setMarginEnd(margin);
+        itemView.setLayoutParams(p);
         return new DetailedShipViewHolder(itemView);
     }
 
